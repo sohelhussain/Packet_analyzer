@@ -126,9 +126,7 @@ public:
     
     // ========== Accessors ==========
     
-    RuleManager& getRuleManager() { return *rule_manager_; }
-    const Config& getConfig() const { return config_; }
-    bool isRunning() const { return running_; }
+    
 
 private:
     Config config_;
