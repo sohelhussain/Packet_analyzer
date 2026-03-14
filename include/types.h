@@ -38,18 +38,7 @@ struct FiveTuple {
 };
 
 // Hash function for FiveTuple (used for load balancing)
-struct FiveTupleHash {
-    size_t operator()(const FiveTuple& tuple) const {
-        // Simple but effective hash combining all fields
-        size_t h = 0;
-        h ^= std::hash<uint32_t>{}(tuple.src_ip) + 0x9e3779b9 + (h << 6) + (h >> 2);
-        h ^= std::hash<uint32_t>{}(tuple.dst_ip) + 0x9e3779b9 + (h << 6) + (h >> 2);
-        h ^= std::hash<uint16_t>{}(tuple.src_port) + 0x9e3779b9 + (h << 6) + (h >> 2);
-        h ^= std::hash<uint16_t>{}(tuple.dst_port) + 0x9e3779b9 + (h << 6) + (h >> 2);
-        h ^= std::hash<uint8_t>{}(tuple.protocol) + 0x9e3779b9 + (h << 6) + (h >> 2);
-        return h;
-    }
-};
+
 
 // ============================================================================
 // Application Classification
