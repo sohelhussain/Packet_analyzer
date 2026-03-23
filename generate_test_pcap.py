@@ -57,6 +57,17 @@ def create_ip_header(src_ip, dst_ip, protocol, payload_len):
     return header
 
 
+def create_tcp_header(src_port, dst_port, seq, ack, flags, payload_len=0):
+    data_offset = 5 << 4  # 5 * 4 = 20 bytes
+    window = 65535
+    checksum = 0
+    urgent = 0
+    
+    return struct.pack('>HHIIBBHHH',
+                       src_port, dst_port,
+                       seq, ack,
+                       data_offset, flags,
+                       window, checksum, urgent)
 
 
 def create_udp_header(src_port, dst_port, payload_len):
